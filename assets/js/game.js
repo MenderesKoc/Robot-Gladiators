@@ -22,15 +22,17 @@ var fight = function (enemyName) {
             // if yes (true), leave fight
             if (confirmSkip) {
                 window.alert(playerName + ' has decided to skip this fight. Goodbye!');
-                // subtract money from playerMoney for skipping
-                playerMoney = playerMoney - 10;
+                // Math.max
+                playerMoney = Math.max(0, playerMoney - 10);
+
                 console.log("playerMoney", playerMoney)
                 break;
             }
         }
 
-        // remove enemy's health by subtracting the amount set in the playerAttack variable
-        enemyHealth = enemyHealth - playerAttack;
+        // Math.max
+        enemyHealth = Math.max(0, enemyHealth - playerAttack);
+
         console.log(
             playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
         );
@@ -48,8 +50,9 @@ var fight = function (enemyName) {
             window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
         }
 
-        // remove players's health by subtracting the amount set in the enemyAttack variable
-        playerHealth = playerHealth - enemyAttack;
+        // Math.max
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
+
         console.log(
             enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
         );
@@ -82,8 +85,8 @@ var startGame = function () {
             // pick new enemy to fight based on the index of the enemyNames array
             var pickedEnemyName = enemyNames[i];
 
-            // reset enemyHealth before starting new fight
-            enemyHealth = 50;
+            // used math.random 
+            enemyHealth = randomNumber(40, 60);
 
             // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
             fight(pickedEnemyName);
@@ -179,6 +182,13 @@ var shop = function () {
             shop();
             break;
     }
+};
+
+// function to generate a random numeric value
+var randomNumber = function () {
+    var value = Math.floor(Math.random() * 21) + 40;
+
+    return value;
 };
 
 // start first game when page loads
