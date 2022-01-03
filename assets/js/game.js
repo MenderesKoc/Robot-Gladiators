@@ -166,6 +166,7 @@ var shop = function () {
 };
 
 // function to set name
+
 var getPlayerName = function () {
     var name = "";
 
